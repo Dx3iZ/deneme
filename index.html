@@ -1,834 +1,207 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="referrer" content="no-referrer">
-<title>Hacked By TurkHackTeam | ANKA TEAM</title>
-<link rel="icon" type="image/png" href="https://i.hizliresim.com/mmmwmdup.png">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body, html {
-    height: 100%;
-    background-color: #030000;
-    color: #ffffff;
-    font-family: 'Rajdhani', sans-serif;
-    overflow: hidden;
-    user-select: none;
-    cursor: crosshair;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Hacked By TurkHackTeam | Anka Team</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/mV8rZphn/ankalogo.png">
+    <link rel="preload" as="image" href="https://i.ibb.co/RGM5VrPY/29ekimop.webp">
+    <audio id="bgMusic" loop>
+    <source src="https://audio.jukehost.co.uk/01a0eeb1-b22b-73a2-be2c-a6f41ae9d0b3.mp3" auto-play type="audio/mpeg">
+    </audio>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-.scanlines {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
-    background-size: 100% 3px, 3px 100%;
-    z-index: 10;
-    pointer-events: none;
-}
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            background-color: #000;
+            overflow: hidden;
+        }
 
-.bg-layer {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-    opacity: 0;
-    transform: scale(1.1);
-    will-change: transform, opacity;
-    filter: brightness(0.5) contrast(1.1);
-}
+        .bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            transform: scale(1.1);
+            object-fit: cover;
+            transition: transform 0.1s linear;
+        }
 
-.bg-1 { background-image: url('https://i.hizliresim.com/bair5yqv.png'); animation: fadeBg 16s infinite 0s; }
-.bg-2 { background-image: url('https://i.hizliresim.com/fcitcgfb.png'); animation: fadeBg 16s infinite 4s; }
-.bg-3 { background-image: url('https://i.hizliresim.com/3rfroq9b.png'); animation: fadeBg 16s infinite 12s; }
-
-@keyframes fadeBg {
-    0%, 20% { opacity: 0; }
-    25%, 45% { opacity: 0.6; }
-    50%, 100% { opacity: 0; }
-}
-
-.yt-bg {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    overflow: hidden;
-    opacity: 0.45;
-    pointer-events: none;
-}
-.yt-bg iframe {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: max(100vw, 177.78vh);
-    height: max(100vh, 56.25vw);
-    transform: translate(-50%, -50%);
-    filter: blur(8px) brightness(0.32) saturate(1.3);
-    pointer-events: none;
-}
-
-#matrixCanvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 2;
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-#mainCanvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 3;
-    transform: translateZ(0);
-}
-
-.fire-glow {
-    position: fixed;
-    bottom: -8%; left: 50%; transform: translateX(-50%);
-    width: 100vw; height: 40vh;
-    background: radial-gradient(ellipse at center bottom, rgba(255, 80, 0, 0.35), transparent 70%);
-    z-index: 4;
-    pointer-events: none;
-    animation: fireGlowPulse 2s ease-in-out infinite alternate;
-}
-@keyframes fireGlowPulse {
-    from { opacity: 0.55; }
-    to   { opacity: 1; }
-}
-#fireCanvas {
-    position: fixed;
-    left: 0; bottom: 0;
-    width: 100%; height: 26vh;
-    z-index: 4;
-    image-rendering: pixelated;
-    pointer-events: none;
-    opacity: 0.95;
-}
-
-.vignette-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at center, transparent 15%, #000000 95%);
-    z-index: 5;
-    pointer-events: none;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-    position: relative;
-    padding: 20px;
-    z-index: 6;
-    will-change: transform;
-}
-
-.logos-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    pointer-events: auto;
-    text-decoration: none;
-    cursor: crosshair;
-    transition: transform 0.3s ease;
-}
-.logos-container:hover { transform: scale(1.1) translateY(-5px); }
-.logos-container img {
-    width: 250px;
-    height: auto;
-    object-fit: contain;
-    border-radius: 8px;
-    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.8));
-    animation: pulse-logo 2s infinite alternate;
-}
-
-@keyframes pulse-logo {
-    0% { filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5)); transform: scale(0.98); }
-    100% { filter: drop-shadow(0 0 25px rgba(255, 0, 0, 1)); transform: scale(1.02); }
-}
-
-.slider-container {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.slide {
-    position: absolute;
-    opacity: 0;
-    transform: scale(1.2) translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.2rem;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    pointer-events: none;
-    text-shadow: 2px 2px 0px rgba(255, 0, 0, 0.9);
-    will-change: opacity, transform;
-}
-
-.slide.active {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    animation: textGlitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
-}
-
-.slide span {
-    color: #ff0000;
-    font-weight: 900;
-    font-size: 3.5rem;
-    text-shadow: 0 0 20px rgba(255, 0, 0, 1);
-    letter-spacing: 5px;
-    display: inline-block;
-    margin-top: 15px;
-}
-
-@keyframes textGlitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); text-shadow: 3px -1px #ff0000, -1px 2px #0affff; }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); text-shadow: -2px 2px #ff0000, 2px -2px #0affff; }
-    100% { transform: translate(0); }
-}
-
-.signature {
-    position: fixed;
-    left: 50%; transform: translateX(-50%);
-    bottom: 34px;
-    z-index: 8;
-    text-align: center;
-    pointer-events: auto;
-}
-.slogan {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: 2px;
-    color: #fff;
-    text-transform: uppercase;
-    text-shadow: 0 0 14px rgba(255, 0, 0, 0.9);
-    margin-bottom: 5px;
-    animation: sloganGlitch 2.5s infinite;
-}
-@keyframes sloganGlitch {
-    0%, 86%, 100% { transform: translate(0); text-shadow: 0 0 14px rgba(255, 0, 0, 0.9); }
-    88% { transform: translate(-2px, 1px); text-shadow: -2px 0 #ff0000, 2px 0 #0affff; }
-    90% { transform: translate(2px, -1px); text-shadow: 2px 0 #ff0000, -2px 0 #0affff; }
-    92% { transform: translate(-1px, 0); text-shadow: 1px 0 #ff0000, -1px 0 #00ffff; }
-    94% { transform: translate(0); }
-}
-.handle {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 15px;
-    letter-spacing: 2px;
-    color: #ff4040;
-    text-decoration: none;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
-}
-.handle:hover { text-decoration: underline; color: #fff; }
-
-.terminal {
-    position: fixed;
-    right: 14px; bottom: 14px;
-    width: min(340px, 78vw);
-    z-index: 8;
-    background: rgba(0, 0, 0, 0.78);
-    border: 1px solid rgba(255, 0, 0, 0.55);
-    box-shadow: 0 0 18px rgba(255, 0, 0, 0.35), inset 0 0 12px rgba(255, 0, 0, 0.08);
-    font-family: 'Share Tech Mono', monospace;
-    pointer-events: none;
-}
-.term-title {
-    padding: 5px 10px;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #ff5f5f;
-    background: rgba(255, 0, 0, 0.12);
-    border-bottom: 1px solid rgba(255, 0, 0, 0.4);
-}
-.term-body {
-    padding: 8px 10px;
-    font-size: 12px;
-    line-height: 1.55;
-    color: #ffb3b3;
-    min-height: 42px;
-    text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
-    white-space: pre-wrap;
-}
-.term-body::after { content: '▊'; animation: blink 0.8s steps(1) infinite; color: #ff5f5f; }
-@keyframes blink { 50% { opacity: 0; } }
-
-.info {
-    position: fixed;
-    bottom: 12px; left: 14px;
-    z-index: 8;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 1px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.65);
-    text-align: left;
-    pointer-events: none;
-    text-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
-}
-.info span { color: #ff4040; }
-
-@media (max-width: 768px) {
-    .slide { font-size: 1.5rem; }
-    .slide span { font-size: 2rem; }
-    .logos-container img { width: 180px; }
-    #fireCanvas { height: 18vh; }
-    .slogan { font-size: 0.8rem; letter-spacing: 1px; }
-    .handle { font-size: 13px; }
-    .terminal { display: none; }
-}
-</style>
+        #networkCanvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+        }
+    </style>
 </head>
 <body>
+    <canvas id="networkCanvas"></canvas>
+    <img class="bg-layer bg" src="https://i.ibb.co/F4YV2Y8s/c5bd0fd5-ca32-4319-b00c-9b863b72efca.png" alt="">
+    <script>
+        document.addEventListener('contextmenu', event => {
+            event.preventDefault();
+            alert('SYSTEM SECURED | Erişim Reddedildi.');
+        });
 
-<audio id="bg-audio" loop preload="auto" autoplay>
-    <source src="https://mp3tourl.com/audio/1786837836081-f7346893-e757-4cc9-ad2a-e9b754b8b4fe.mp3" type="audio/mpeg">
-</audio>
+        document.addEventListener('keydown', event => {
+            if (event.keyCode === 123 ||
+               (event.ctrlKey && event.shiftKey && (event.keyCode === 73 || event.keyCode === 74)) ||
+               (event.ctrlKey && event.keyCode === 85)) {
+                event.preventDefault();
+                return false;
+            }
+        });
 
-<div class="yt-bg">
-    <div id="ytPlayer"></div>
-</div>
+        document.addEventListener('dragstart', event => event.preventDefault());
 
-<div class="scanlines"></div>
-<div class="bg-layer bg-1"></div>
-<div class="bg-layer bg-2"></div>
-<div class="bg-layer bg-3"></div>
+        document.addEventListener("click", () => {
+            const audio = document.getElementById("bgMusic");
+            audio.play();
+        }, { once: true });
 
-<canvas id="matrixCanvas"></canvas>
-<canvas id="mainCanvas"></canvas>
+        let mouse = { x: null, y: null, radius: 220 }; // Mouse etki alanı büyütüldü
 
-<div class="fire-glow"></div>
-<canvas id="fireCanvas"></canvas>
-<div class="vignette-overlay"></div>
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
 
-<div class="signature">
-    <div class="slogan">We are wherever we want, whenever we want</div>
-    <a href="https://x.com/ankateamresmi" target="_blank" class="handle">✖ x.com/ankateamresmi</a>
-</div>
+            let xAxis = (window.innerWidth / 2 - event.clientX) / 20;
+            let yAxis = (window.innerHeight / 2 - event.clientY) / 20;
 
-<div class="terminal">
-    <div class="term-title">ANKATEAM // ROOT TERMINAL</div>
-    <div class="term-body" id="termOut"></div>
-</div>
+            document.querySelectorAll('.bg-layer').forEach(bg => {
+                bg.style.transform = `scale(1.05) translate(${xAxis}px, ${yAxis}px)`;
+            });
 
-<div class="info">
-    ZİYARETÇİ IP: <span id="visitorIp">--.--.--.--</span><br>
-    <span id="clock">--:--:--</span>
-</div>
+            document.querySelector('.container').style.transform = `translate(${-xAxis * 0.8}px, ${-yAxis * 0.8}px)`;
+        });
 
-<div class="container" id="mainContainer">
-    <a href="https://www.turkhackteam.org/" target="_blank" class="logos-container" title="TurkHackTeam Forumuna Git">
-        <img src="https://i.hizliresim.com/7lpwwia2.png" alt="TurkHackTeam Logo 1">
-    </a>
-    <div class="slider-container">
-        <div class="slide active">HACKED ANKA TEAM <br><span>TURKHACKTEAM</span></div>
-        <div class="slide">VETERAN7 - ZORROKİN - B0YNER<br><span>HACKED!</span></div>
-        <div class="slide">İSTEDİĞİMİZ ZAMAN<br><span>İSTEDİĞİMİZ YERDE!</span></div>
-        <div class="slide">WE ARE WHEREVER WE WANT<br><span>WHENEVER WE WANT</span></div>
-    </div>
-</div>
+        window.addEventListener('mouseout', function() {
+            mouse.x = undefined;
+            mouse.y = undefined;
+            
+            document.querySelectorAll('.bg-layer').forEach(bg => {
+                bg.style.transform = `scale(1.1) translate(0px, 0px)`;
+            });
+            document.querySelector('.container').style.transform = `translate(0px, 0px)`;
+        });
 
-<script src="https://www.youtube.com/iframe_api"></script>
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-<script>
-const container = document.getElementById('mainContainer');
-const bgLayers = document.querySelectorAll('.bg-layer');
-let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        let particlesArray = [];
 
-window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    const xAxis = (window.innerWidth / 2 - e.clientX) / 25;
-    const yAxis = (window.innerHeight / 2 - e.clientY) / 25;
-    container.style.transform = `translate3d(${xAxis}px, ${yAxis}px, 0)`;
-    bgLayers.forEach(bg => {
-        bg.style.transform = `scale(1.1) translate3d(${-xAxis * 0.4}px, ${-yAxis * 0.4}px, 0)`;
-    });
-});
+        class Particle {
+            constructor(x, y, directionX, directionY, size) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+            }
 
-const canvas = document.getElementById('mainCanvas');
-const ctx = canvas.getContext('2d', { alpha: true });
-
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-let particlesArray = [];
-const maxParticles = window.innerWidth < 768 ? 50 : 100;
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() * 1.5) - 0.75;
-        this.speedY = (Math.random() * 1.5) - 0.75;
-    }
-    update() {
-        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-        this.x += this.speedX;
-        this.y += this.speedY;
-    }
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(200, 0, 0, 0.5)';
-        ctx.fill();
-    }
-}
-
-for (let i = 0; i < maxParticles; i++) {
-    particlesArray.push(new Particle());
-}
-
-function drawNetwork() {
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
-        for (let j = i; j < particlesArray.length; j++) {
-            let dx = particlesArray[i].x - particlesArray[j].x;
-            let dy = particlesArray[i].y - particlesArray[j].y;
-            let distanceSq = dx * dx + dy * dy;
-            if (distanceSq < 15000) {
-                let mDx = mouse.x - particlesArray[i].x;
-                let mDy = mouse.y - particlesArray[i].y;
-                let mouseDistSq = mDx * mDx + mDy * mDy;
-                let opacity = 1 - (distanceSq / 15000);
-                if (mouseDistSq < 40000) {
-                    ctx.strokeStyle = `rgba(255, 50, 50, ${opacity})`;
-                    ctx.lineWidth = 1.5;
-                } else {
-                    ctx.strokeStyle = `rgba(150, 0, 0, ${opacity * 0.3})`;
-                    ctx.lineWidth = 0.5;
-                }
+            draw() {
                 ctx.beginPath();
-                ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                ctx.stroke();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouse.radius) {
+                    ctx.fillStyle = '#ff3333';
+                    ctx.shadowBlur = 20;
+                    ctx.shadowColor = '#ff0000';
+                } else {
+                    ctx.fillStyle = 'rgba(150, 0, 0, 0.6)';
+                    ctx.shadowBlur = 5;
+                    ctx.shadowColor = '#aa0000';
+                }
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+                if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+                
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
             }
         }
-    }
-}
 
-const codeSnippets = [
-    "b0yner",
-    "DxeiZ",
-    "Zephyris",
-    "By Neferian",
-    "Maveraün Nehr",
-    "şıkk",
-    "Kryzlo",
-    "tbabi",
-    "‘SALDIRGAN",
-    "QuatrexDefacer",
-    "Moiz",
-    "firehackturk",
-    "Noxe",
-    "ANKA TEAM",
-    "Dleaxy",
-    "Hackingwarrior",
-    "Dc İmam Doğan",
-    "Privarp",
-    "Veteran 7",
-];
-
-let fallingCodes = [];
-const maxCodeLines = window.innerWidth < 768 ? 10 : 25;
-
-class FallingCode {
-    constructor() {
-        this.reset();
-        this.y = Math.random() * canvas.height;
-    }
-    reset() {
-        this.text = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-        this.x = Math.random() * canvas.width;
-        this.y = -50;
-        this.speed = Math.random() * 2 + 1.5;
-        this.opacity = Math.random() * 0.5 + 0.2;
-        this.fontSize = Math.floor(Math.random() * 10) + 12;
-    }
-    update() {
-        this.y += this.speed;
-        if (this.y > canvas.height + 50) {
-            this.reset();
+        function initCanvas() {
+            particlesArray = [];
+            let numberOfParticles = Math.floor((canvas.height * canvas.width) / 9000);
+            
+            if (numberOfParticles > 200) numberOfParticles = 200;
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 1) - 0.5;
+                let directionY = (Math.random() * 1) - 0.5;
+                
+                particlesArray.push(new Particle(x, y, directionX, directionY, size));
+            }
         }
-    }
-    draw() {
-        ctx.font = `${this.fontSize}px "Share Tech Mono", monospace`;
-        if (Math.random() > 0.99) {
-            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity + 0.3})`;
-        } else {
-            ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;
-        }
-        ctx.fillText(this.text, this.x, this.y);
-    }
-}
 
-for (let i = 0; i < maxCodeLines; i++) {
-    fallingCodes.push(new FallingCode());
-}
-
-function drawFallingCodes() {
-    for (let i = 0; i < fallingCodes.length; i++) {
-        fallingCodes[i].update();
-        fallingCodes[i].draw();
-    }
-}
-
-let embers = [];
-class Ember {
-    constructor() { this.reset(); }
-    reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = canvas.height - 20;
-        this.speedY = -(Math.random() * 2 + 1.2);
-        this.speedX = (Math.random() - 0.5) * 1.2;
-        this.size = Math.random() * 2.5 + 1;
-        this.life = 0;
-        this.maxLife = 120 + Math.random() * 80;
-        this.color = Math.random() < 0.6 ? '255,120,20' : '255,220,120';
-    }
-    update() {
-        this.life++;
-        this.y += this.speedY;
-        this.x += this.speedX + Math.sin(this.life * 0.05) * 0.3;
-        this.speedX *= 0.99;
-        if (this.life > this.maxLife || this.y < -20) this.reset();
-    }
-    draw() {
-        const a = (1 - this.life / this.maxLife) * 0.85;
-        if (a <= 0) return;
-        ctx.fillStyle = `rgba(${this.color},${a})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-for (let i = 0; i < (window.innerWidth < 768 ? 40 : 90); i++) {
-    embers.push(new Ember());
-}
-
-function drawEmbers() {
-    for (let i = 0; i < embers.length; i++) {
-        embers[i].update();
-        embers[i].draw();
-    }
-}
-
-let smokes = [];
-class Smoke {
-    constructor() { this.reset(); }
-    reset() {
-        this.x = canvas.width * (0.2 + Math.random() * 0.6);
-        this.y = canvas.height - 30;
-        this.speedY = -(Math.random() * 0.8 + 0.4);
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.size = 10 + Math.random() * 20;
-        this.life = 0;
-        this.maxLife = 200;
-    }
-    update() {
-        this.life++;
-        this.y += this.speedY;
-        this.x += this.speedX;
-        this.size += 0.12;
-        if (this.life > this.maxLife || this.y < -60) this.reset();
-    }
-    draw() {
-        const a = (1 - this.life / this.maxLife) * 0.14;
-        if (a <= 0) return;
-        const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-        g.addColorStop(0, `rgba(90,90,95,${a})`);
-        g.addColorStop(1, 'rgba(90,90,95,0)');
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-for (let i = 0; i < 14; i++) {
-    smokes.push(new Smoke());
-}
-
-function drawSmoke() {
-    for (let i = 0; i < smokes.length; i++) {
-        smokes[i].update();
-        smokes[i].draw();
-    }
-}
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawNetwork();
-    drawFallingCodes();
-    drawSmoke();
-    drawEmbers();
-    requestAnimationFrame(animate);
-}
-animate();
-
-const matrixCanvas = document.getElementById('matrixCanvas');
-const mctx = matrixCanvas.getContext('2d');
-const mChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFXYZ<>/\\|{}[]#$%&@*+=';
-let mFontSize = 14;
-let mColumns, mDrops;
-
-function resizeMatrix() {
-    matrixCanvas.width = window.innerWidth;
-    matrixCanvas.height = window.innerHeight;
-    mColumns = Math.floor(matrixCanvas.width / mFontSize);
-    mDrops = [];
-    for (let i = 0; i < mColumns; i++) {
-        mDrops[i] = Math.random() * -100;
-    }
-}
-window.addEventListener('resize', resizeMatrix);
-resizeMatrix();
-
-function drawMatrix() {
-    mctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    mctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-    mctx.font = mFontSize + 'px monospace';
-    for (let i = 0; i < mColumns; i++) {
-        const ch = mChars[Math.floor(Math.random() * mChars.length)];
-        const x = i * mFontSize;
-        const y = mDrops[i] * mFontSize;
-        mctx.fillStyle = Math.random() > 0.975 ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 40, 40, 0.75)';
-        mctx.fillText(ch, x, y);
-        if (y > matrixCanvas.height && Math.random() > 0.975) {
-            mDrops[i] = 0;
-        }
-        mDrops[i]++;
-    }
-}
-function animateMatrix() {
-    drawMatrix();
-    requestAnimationFrame(animateMatrix);
-}
-animateMatrix();
-
-const termLines = [
-    "> we are wherever we want,",
-    "> whenever we want",
-    "> x.com/ankateamresmi",
-];
-const termOut = document.getElementById('termOut');
-let termIdx = 0;
-let charIdx = 0;
-
-function typeTerm() {
-    if (termIdx >= termLines.length) {
-        termIdx = 0;
-        termOut.textContent = '';
-    }
-    const line = termLines[termIdx];
-    if (charIdx < line.length) {
-        termOut.textContent = line.slice(0, charIdx + 1);
-        charIdx++;
-        setTimeout(typeTerm, 25 + Math.random() * 40);
-    } else {
-        termOut.textContent = line;
-        charIdx = 0;
-        termIdx++;
-        setTimeout(typeTerm, 900);
-    }
-}
-typeTerm();
-
-const fireCanvas = document.getElementById('fireCanvas');
-const fctx = fireCanvas.getContext('2d');
-const FIRE_W = 320;
-const FIRE_H = 110;
-fireCanvas.width = FIRE_W;
-fireCanvas.height = FIRE_H;
-
-const firePixels = new Uint8Array(FIRE_W * FIRE_H);
-const fireImage = fctx.createImageData(FIRE_W, FIRE_H);
-
-const PALETTE = [
-    [0,0,0],[7,0,0],[15,0,0],[23,0,0],[31,0,0],[39,0,0],[47,0,0],[55,0,0],
-    [63,0,0],[71,0,0],[79,0,0],[87,0,0],[95,0,0],[103,0,0],[111,0,0],[119,0,0],
-    [127,0,0],[143,0,0],[159,0,0],[175,0,0],[191,0,0],[207,0,0],[223,0,0],[239,0,0],
-    [255,0,0],[255,23,0],[255,47,0],[255,71,0],[255,95,0],[255,119,0],
-    [255,143,0],[255,167,0],[255,191,0],[255,215,0],[255,239,0],[255,255,200],[255,255,255]
-];
-
-function updateFire() {
-    for (let y = 0; y < FIRE_H - 1; y++) {
-        for (let x = 0; x < FIRE_W; x++) {
-            const i = y * FIRE_W + x;
-            const src = firePixels[(y + 1) * FIRE_W + x] +
-                        firePixels[(y + 1) * FIRE_W + ((x + FIRE_W - 1) % FIRE_W)] +
-                        firePixels[(y + 1) * FIRE_W + ((x + 1) % FIRE_W)] +
-                        firePixels[Math.min(y + 2, FIRE_H - 1) * FIRE_W + x];
-            let dst = Math.floor(src / 4);
-            if (Math.random() < 0.3) dst--;
-            if (Math.random() < 0.1) dst--;
-            if (dst < 0) dst = 0;
-            firePixels[i] = dst;
-        }
-    }
-    for (let x = 0; x < FIRE_W; x++) {
-        firePixels[(FIRE_H - 1) * FIRE_W + x] = Math.random() < 0.85 ? 36 : 28;
-    }
-}
-
-function drawFire() {
-    for (let i = 0; i < firePixels.length; i++) {
-        const c = PALETTE[firePixels[i]];
-        const o = i * 4;
-        fireImage.data[o]     = c[0];
-        fireImage.data[o + 1] = c[1];
-        fireImage.data[o + 2] = c[2];
-        fireImage.data[o + 3] = 255;
-    }
-    fctx.putImageData(fireImage, 0, 0);
-}
-
-function animateFire() {
-    updateFire();
-    drawFire();
-    requestAnimationFrame(animateFire);
-}
-animateFire();
-
-const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
-function nextSlide() {
-    if (slides.length > 0) {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }
-}
-setInterval(nextSlide, 3500);
-
-let ytPlayer = null;
-
-function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('ytPlayer', {
-        videoId: 'Y75Km7dlt94',
-        playerVars: {
-            autoplay: 1,
-            controls: 0,
-            disablekb: 1,
-            loop: 1,
-            playlist: 'RDY75Km7dlt94',
-            listType: 'playlist',
-            list: 'RDY75Km7dlt94',
-            playsinline: 1,
-            rel: 0,
-            modestbranding: 1,
-            enablejsapi: 1,
-            iv_load_policy: 3,
-            fs: 0,
-            mute: 1
-        },
-        events: {
-            onReady: e => {
-                try {
-                    const iframe = e.target.getIframe();
-                    if (iframe) iframe.allow = 'autoplay; encrypted-media';
-                    e.target.mute();
-                    e.target.playVideo();
-                } catch (err) {}
-            },
-            onStateChange: e => {
-                if (e.data === YT.PlayerState.ENDED) {
-                    try { e.target.playVideo(); } catch (err) {}
+        function connectParticles() {
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                                 + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        let opacityValue = 1 - (distance / 20000);
+                        let dx = mouse.x - particlesArray[a].x;
+                        let dy = mouse.y - particlesArray[a].y;
+                        let mouseDistance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (mouseDistance < mouse.radius) {
+                            ctx.strokeStyle = 'rgba(255, 50, 50,' + opacityValue + ')';
+                            ctx.lineWidth = 2;
+                            ctx.shadowBlur = 10;
+                            ctx.shadowColor = 'red';
+                        } else {
+                            ctx.strokeStyle = 'rgba(150, 0, 0,' + (opacityValue * 0.2) + ')';
+                            ctx.lineWidth = 0.8;
+                            ctx.shadowBlur = 0;
+                        }
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
                 }
             }
         }
-    });
-}
 
-const bgAudio = document.getElementById('bg-audio');
-bgAudio.volume = 1.0;
-
-function startBgAudio() {
-    try {
-        if (bgAudio.paused) {
-            bgAudio.volume = 1.0;
-            const p = bgAudio.play();
-            if (p && typeof p.catch === 'function') p.catch(() => {});
+        function animateCanvas() {
+            requestAnimationFrame(animateCanvas);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connectParticles();
         }
-    } catch (e) {}
-}
 
-function bgAudioRetry() {
-    let tries = 0;
-    const iv = setInterval(() => {
-        tries++;
-        if (!bgAudio.paused || tries > 30) {
-            clearInterval(iv);
-            return;
-        }
-        startBgAudio();
-    }, 400);
-}
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            initCanvas();
+        });
 
-document.addEventListener('click', startBgAudio, true);
-document.addEventListener('touchstart', startBgAudio, true);
-document.addEventListener('keydown', startBgAudio, true);
-document.addEventListener('mousemove', startBgAudio, true);
-document.addEventListener('scroll', startBgAudio, true);
-bgAudio.addEventListener('loadeddata', startBgAudio);
-bgAudio.addEventListener('canplay', startBgAudio);
-bgAudio.addEventListener('play', () => { bgAudio.volume = 1.0; });
-
-setTimeout(bgAudioRetry, 500);
-startBgAudio();
-
-fetch('https://api.ipify.org?format=json', { referrerPolicy: 'no-referrer' })
-    .then(r => r.json())
-    .then(d => { document.getElementById('visitorIp').textContent = d.ip; })
-    .catch(() => {});
-
-function tickClock() {
-    const now = new Date();
-    const p = n => String(n).padStart(2, '0');
-    document.getElementById('clock').textContent =
-        p(now.getHours()) + ':' + p(now.getMinutes()) + ':' + p(now.getSeconds());
-}
-setInterval(tickClock, 1000);
-tickClock();
-
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.addEventListener('keydown', event => {
-    if (event.keyCode === 123 ||
-       (event.ctrlKey && event.shiftKey && (event.keyCode === 73 || event.keyCode === 74)) ||
-       (event.ctrlKey && event.keyCode === 85)) {
-        event.preventDefault();
-        return false;
-    }
-});
-document.addEventListener('dragstart', event => event.preventDefault());
-</script>
+        initCanvas();
+        animateCanvas();
+    </script>
 </body>
 </html>
